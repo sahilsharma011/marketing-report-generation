@@ -1,0 +1,172 @@
+{
+  "regulatory": [
+    {
+      "name": "FSAI News",
+      "url": "https://www.fsai.ie/news-and-alerts",
+      "rss_url": null,
+      "sitemap_url": null,
+      "pagination_pattern": "?fromDate={from_date}&toDate={to_date}&sort=desc&page={page}",
+      "max_pages": 3,
+      "method": "pagination",
+      "notes": "No RSS. Use date-filtered pagination. fromDate/toDate format: YYYY-MM-DD. Filter results for functional foods, health claims, plant stanols/sterols."
+    },
+    {
+      "name": "EFSA Publications",
+      "url": "https://www.efsa.europa.eu/en/publications",
+      "rss_url": "https://www.efsa.europa.eu/en/publications/rss",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "notes": "RSS is generic (all publications). Filter locally for keywords: plant sterol, plant stanol, phytosterol, phytostanol, cholesterol, functional food, health claim."
+    },
+    {
+      "name": "EFSA All Updates",
+      "url": "https://www.efsa.europa.eu/en",
+      "rss_url": "https://www.efsa.europa.eu/en/all/rss",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "notes": "Combined feed (news + publications + events). Filter for same keywords as EFSA Publications. Use as a catch-all alongside the publications feed."
+    }
+  ],
+  "scientific": {
+    "source": "PubMed E-utilities API",
+    "base_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+    "search_endpoint": "esearch.fcgi",
+    "summary_endpoint": "esummary.fcgi",
+    "fetch_endpoint": "efetch.fcgi",
+    "method": "api",
+    "queries": [
+      "plant stanols cholesterol",
+      "plant sterols LDL reduction",
+      "functional foods cholesterol reduction",
+      "phytosterols cardiovascular health"
+    ],
+    "params": {
+      "db": "pubmed",
+      "reldate": 365,
+      "datetype": "pdat",
+      "retmode": "json",
+      "retmax": 20
+    },
+    "notes": "Use esearch to get PMIDs, then esummary for metadata. reldate=365 because these are niche topics with ~4-11 papers/year. Paginate with retstart if count > retmax. Rate limit: max 3 requests/second without API key."
+  },
+  "industry": [
+    {
+      "name": "NutraIngredients",
+      "url": "https://www.nutraingredients.com/",
+      "rss_url": "https://www.nutraingredients.com/arc/outboundfeeds/rss/",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "category_pages": [
+        "https://www.nutraingredients.com/Health-conditions/Cardiovascular-health/"
+      ],
+      "notes": "RSS has ~20 items, hourly updates. Filter for stanols/sterols/cholesterol keywords. Category page for Cardiovascular health is SSR and scrapable as supplement. On-site search is JS-only (Queryly), not usable."
+    },
+    {
+      "name": "Food Navigator Europe",
+      "url": "https://www.foodnavigator.com/",
+      "rss_url": "https://www.foodnavigator.com/arc/outboundfeeds/rss/",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "category_pages": [
+        "https://www.foodnavigator.com/Trends/Functional-foods/",
+        "https://www.foodnavigator.com/Trends/Diet-health/"
+      ],
+      "notes": "Same RSS structure as NutraIngredients (~20 items). Category pages for Functional foods and Diet-health are SSR. On-site search is JS-only."
+    }
+  ],
+  "competitors": [
+    {
+      "name": "Benecol Ireland",
+      "url": "https://benecol.ie/",
+      "rss_url": "https://benecol.ie/feed/",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "product_page": "https://benecol.ie/products/",
+      "notes": "WordPress site, SSR. RSS feed has ~10 blog/healthy-tips items. Update frequency is sporadic. Also scrape product page for new launches."
+    },
+    {
+      "name": "Benecol UK",
+      "url": "https://benecol.co.uk/",
+      "rss_url": "https://benecol.co.uk/feed/",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "product_page": "https://benecol.co.uk/products/",
+      "notes": "WordPress site, SSR. More active than IE site. RSS has ~10 items. Good for tracking content strategy and new products that may come to Ireland."
+    },
+    {
+      "name": "Flora UK",
+      "url": "https://www.flora.com/en-gb",
+      "rss_url": null,
+      "sitemap_url": "https://www.flora.com/en-gb/sitemap.xml",
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "sitemap",
+      "notes": "JS-heavy Sitecore site. No RSS, no blog. Use sitemap lastmod diffing to detect new products/recipes. ~150 URLs. No ProActiv products on this domain."
+    },
+    {
+      "name": "Flora ProActiv Ireland",
+      "url": "https://www.pro-activ.com/en-ie",
+      "rss_url": null,
+      "sitemap_url": "https://www.pro-activ.com/en-ie/sitemap.xml",
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "sitemap",
+      "notes": "JS-heavy Sitecore site. No RSS. Mostly stale content (2021). Use sitemap lastmod diffing. ~100 URLs. Only 2 spread products. Watch for new product launches or content refreshes."
+    }
+  ],
+  "media": [
+    {
+      "name": "Irish Examiner Health",
+      "url": "https://www.irishexaminer.com/lifestyle/healthandwellbeing/",
+      "rss_url": "https://www.irishexaminer.com/feed/449-healthandwellbeing.xml",
+      "sitemap_url": null,
+      "pagination_pattern": null,
+      "max_pages": 1,
+      "method": "rss",
+      "notes": "Dedicated health Atom feed with ~35 articles including summaries and dates. Best Irish media source. Filter by date and keywords: cholesterol, heart health, supplements, functional foods, plant sterols."
+    },
+    {
+      "name": "Irish Times Health",
+      "url": "https://www.irishtimes.com/health/",
+      "rss_url": "https://www.irishtimes.com/arc/outboundfeeds/rss/",
+      "sitemap_url": null,
+      "pagination_pattern": "/health/{page}/",
+      "max_pages": 3,
+      "method": "pagination",
+      "rss_note": "Global RSS only (no health filter). Prefer pagination.",
+      "notes": "SSR pagination at /health/1/, /health/2/ etc. Many articles are paywalled. Global RSS exists but includes all sections. For health-specific: paginate and extract article links/titles from HTML. Search is JS-only."
+    }
+  ],
+  "keywords": {
+    "primary": [
+      "plant stanols",
+      "plant sterols",
+      "cholesterol lowering",
+      "Benecol",
+      "phytosterols",
+      "phytostanols"
+    ],
+    "secondary": [
+      "functional foods",
+      "heart health",
+      "LDL cholesterol",
+      "cardiovascular health",
+      "health claims regulation",
+      "cholesterol diet",
+      "Flora ProActiv",
+      "cholesterol supplements Ireland"
+    ]
+  }
+}
