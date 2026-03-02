@@ -56,16 +56,63 @@ You need one of these AI coding tools installed:
    (Replace "March 2026" with whatever month you need)
 
 5. Wait 3-5 minutes while it fetches all sources
-6. Your report will be in the `output/` folder
+6. Your report will be at `output/2026-03-newsletter-research.md`
 
-### Copying the Report
+## How It Works — The Agentic Flow
 
-To copy the report to your clipboard (Mac):
+This tool uses an **agentic workflow** — instead of a single script running step by step, it works more like a team of assistants collaborating on a task.
+
+### What Is an Agentic Workflow?
+
+Think of it like delegating research to a team. You give one instruction ("research this month's newsletter topics"), and an **orchestrator** breaks that down into smaller tasks and hands them out to **specialist agents** who work in parallel — just like assigning different team members to cover different beats.
+
 ```
-cat output/2026-03-newsletter-research.md | pbcopy
+You: "Run newsletter research for March 2026"
+ │
+ ▼
+Orchestrator (reads your source list and kicks off the team)
+ │
+ ├── Agent A: Checks FSAI and EFSA for regulatory news
+ ├── Agent B: Searches PubMed for new scientific studies
+ ├── Agent C: Reads NutraIngredients and Food Navigator RSS feeds
+ ├── Agent D: Checks Benecol, Flora, and ProActiv for competitor changes
+ └── Agent E: Scans Irish Times and Irish Examiner health sections
+      │
+      ▼  (all 5 work at the same time)
+      │
+ Orchestrator collects all results
+      │
+      ▼
+ Final step: Removes duplicates, organises by category, writes the report
 ```
 
-Then paste it wherever you need it — Google Docs, email, Notion, etc.
+### Why This Matters for Your Work
+
+Agentic workflows aren't limited to newsletter research. The same pattern applies to any repetitive task where you:
+
+1. **Gather information from multiple places** (websites, databases, feeds)
+2. **Filter for what's relevant** (keywords, dates, topics)
+3. **Summarise and organise** the results into something useful
+
+Examples of other things you could build with this same approach:
+
+- **Social media content calendar** — an agent that scans trending health topics and suggests post ideas
+- **Competitor social monitoring** — agents that check competitor social accounts and summarise their recent activity
+- **Campaign performance reports** — agents that pull data from multiple platforms and compile a single brief
+- **Event/conference tracking** — agents that monitor industry event sites and flag relevant upcoming events
+
+Each of these would follow the same pattern: one orchestrator skill file (like our `SKILL.md`), one config file with your sources, and an output folder for results.
+
+### Building Your Own Agentic Workflows
+
+If you want to create a new workflow for a different task:
+
+1. **Define what you want to monitor** — list the websites, feeds, or data sources
+2. **Write the instructions** — create a `SKILL.md` file that tells the AI what to do, step by step
+3. **Configure your sources** — put URLs and keywords in a `sources.json` file
+4. **Run it** — point the AI tool at your skill file and give it a prompt
+
+The AI handles the rest — fetching, reading, filtering, summarising, and compiling. You just review the output.
 
 ## Project Structure
 
